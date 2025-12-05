@@ -31,4 +31,7 @@ body {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
 }
