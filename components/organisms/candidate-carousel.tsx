@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Avatar, Chip, Icon, Tag, Text } from "@/components/atoms";
+import { Avatar, Chip, Icon, Text } from "@/components/atoms";
+import { CandidateTagList } from "@/components/molecules";
 import type { Candidate } from "@/types/candidate";
 
 type Props = { candidates: Candidate[] };
@@ -90,15 +91,11 @@ export default function CandidateCarousel({ candidates }: Props) {
                     >
                       {slide.role} · {slide.exp}
                     </Text>
-                    <div
-                      className={`mt-6 w-full flex flex-wrap justify-center gap-1 ${isCenter ? "" : "opacity-90"}`}
-                    >
-                      {slide.tags.map((t, idx2) => (
-                        <Tag key={idx2} size={isCenter ? "md" : "sm"}>
-                          {t}
-                        </Tag>
-                      ))}
-                    </div>
+                    <CandidateTagList
+                      tags={slide.tags}
+                      size={isCenter ? "md" : "sm"}
+                      className={`mt-6 ${isCenter ? "" : "opacity-90"}`}
+                    />
                   </div>
                 </motion.div>
               </div>

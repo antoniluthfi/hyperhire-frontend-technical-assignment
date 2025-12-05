@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { Icon, Text } from "@/components/atoms";
 import type { Category } from "@/types/category";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { JobCategoryCard } from "@/components/molecules";
 
 type Props = { categories: Category[] };
 
@@ -67,13 +67,7 @@ export default function CategoriesMarquee({ categories }: Props) {
           animate={controls}
         >
           {REPEATED.map(({ title, image }, i) => (
-            <button
-              key={i}
-              className="flex items-center gap-6 rounded-xl bg-white/20 px-4 w-[332px] h-[88px] flex-shrink-0"
-            >
-              <Icon src={image} alt={title} width={56} height={56} priority />
-              <Text className="text-2xl">{title}</Text>
-            </button>
+            <JobCategoryCard key={i} title={title} image={image} />
           ))}
         </motion.div>
       </div>

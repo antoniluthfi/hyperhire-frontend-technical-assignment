@@ -1,4 +1,5 @@
-import { Pill, Heading, Text, Divider } from "@/components/atoms";
+import { Pill, Heading, Text } from "@/components/atoms";
+import { HeroStat } from "@/components/molecules";
 
 export default function Hero() {
   return (
@@ -14,28 +15,18 @@ export default function Hero() {
         개발자가 필요하신가요?
       </a>
       <div className="mt-12 grid sm:grid-cols-3 gap-6">
-        <div>
-          <Divider className="mb-2" />
-          <div className="font-black text-lg">평균 월 120만원</div>
-          <div className="text-white/90 mt-1">
-            임금을 해당 국가를 기준으로 책정합니다.
-          </div>
-        </div>
-        <div>
-          <Divider className="mb-2" />
-          <div className="font-black text-lg">최대 3회 인터뷰</div>
-          <div className="text-white/90 mt-1">
-            마치 채용처럼 지원자를 인터뷰하세요. 마음에 들지 않으면 채용하지
-            마세요.
-          </div>
-        </div>
-        <div>
-          <Divider className="mb-2" />
-          <div className="font-black text-lg">평균 3일, 최대 10일</div>
-          <div className="text-white/90 mt-1">
-            업무에 맞는 인재를 평균 3일, 최대 10일 안에 채용이 가능합니다.
-          </div>
-        </div>
+        <HeroStat
+          title="평균 월 120만원"
+          description="임금을 해당 국가를 기준으로 책정합니다."
+        />
+        <HeroStat
+          title="최대 3회 인터뷰"
+          description="마치 채용처럼 지원자를 인터뷰하세요. 마음에 들지 않으면 채용하지 마세요."
+        />
+        <HeroStat
+          title="평균 3일, 최대 10일"
+          description="업무에 맞는 인재를 평균 3일, 최대 10일 안에 채용이 가능합니다."
+        />
       </div>
     </section>
   );
