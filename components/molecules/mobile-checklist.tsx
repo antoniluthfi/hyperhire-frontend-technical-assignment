@@ -1,4 +1,5 @@
 import { Text, Icon } from "@/components/atoms";
+import Link from "next/link";
 
 type Props = {
   items?: string[];
@@ -30,12 +31,12 @@ export default function MobileChecklist({
           </div>
         ))}
       </div>
-      <a
+      <Link
         href={linkHref}
         className="mt-6 inline-block underline underline-offset-4 font-black text-[#FBFF23]"
       >
         {linkLabel}
-      </a>
+      </Link>
     </section>
   );
 }

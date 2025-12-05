@@ -1,5 +1,6 @@
 import { Pill, Heading, Text } from "@/components/atoms";
 import { HeroStat } from "@/components/molecules";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -13,12 +14,12 @@ export default function Hero() {
       <Text className="text-white/90 text-lg sm:text-2xl animate-fade-in-up will-change-transform">
         법률 및 인사관리 부담없이 1주일 이내에 원격으로 채용해보세요.
       </Text>
-      <a
+      <Link
         className="hidden sm:inline underline underline-offset-4 text-lg font-black"
         href="#"
       >
         개발자가 필요하신가요?
-      </a>
+      </Link>
       <div className="mt-12 hidden sm:grid sm:grid-cols-3 gap-6 animate-fade-in-500 will-change-opacity">
         <HeroStat
           title="평균 월 120만원"

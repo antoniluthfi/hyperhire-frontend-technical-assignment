@@ -1,5 +1,6 @@
 import { Logo, Button } from "@/components/atoms";
 import { Dropdown } from "@/components/molecules";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -17,9 +18,9 @@ export default function Header() {
             { label: "한국어 가능 외국인 채용", href: "#", separator: true },
           ]}
         />
-        <a className="opacity-90 hover:opacity-100 font-black" href="#">
+        <Link className="opacity-90 hover:opacity-100 font-black" href="#">
           해외 개발자 채용 서비스
-        </a>
+        </Link>
       </nav>
       <Button variant="white" className="hidden sm:block">
         문의하기
