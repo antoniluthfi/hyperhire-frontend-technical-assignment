@@ -3,39 +3,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Avatar, Chip, Icon, Tag, Text } from "@/components/atoms";
+import type { Candidate } from "@/types/candidate";
 
-export default function CandidateCarousel() {
-  const slides = [
-    {
-      name: "Abhishek Gupta",
-      role: "마케팅",
-      exp: "2y+",
-      avatar: "/images/img_woman.png",
-      tags: [
-        "마케팅 콘텐츠 제작",
-        "인스타그램 관리",
-        "트위터 관리",
-        "블로그 글 작성",
-      ],
-    },
-    {
-      name: "Abhishek Gupta",
-      role: "마케팅",
-      exp: "2y+",
-      avatar: "/images/img_woman.png",
-      tags: ["인스타그램 관리", "블로그 글 작성"],
-    },
-    {
-      name: "Abhishek Gupta",
-      role: "마케팅",
-      exp: "2y+",
-      avatar: "/images/img_woman.png",
-      tags: ["인사관리", "인스타그램 관리"],
-    },
-  ];
+type Props = { candidates: Candidate[] };
+
+export default function CandidateCarousel({ candidates }: Props) {
   const [index, setIndex] = useState(0);
-  const prev = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
-  const next = () => setIndex((i) => (i + 1) % slides.length);
+  const prev = () =>
+    setIndex((i) => (i - 1 + candidates.length) % candidates.length);
+  const next = () => setIndex((i) => (i + 1) % candidates.length);
 
   return (
     <section className="relative">
@@ -73,8 +49,8 @@ export default function CandidateCarousel() {
         </button>
         <div className="relative pointer-events-none">
           {[-1, 0, 1].map((offset) => {
-            const i = (index + offset + slides.length) % slides.length;
-            const slide = slides[i];
+            const i = (index + offset + candidates.length) % candidates.length;
+            const slide = candidates[i];
             const isCenter = offset === 0;
             const base = isCenter
               ? "w-[292px] h-[408px] bg-white text-[#24252F] shadow-2xl"

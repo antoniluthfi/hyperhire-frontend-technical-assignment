@@ -2,38 +2,18 @@
 "use client";
 
 import { Icon, Text } from "@/components/atoms";
+import type { Category } from "@/types/category";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export default function CategoriesMarquee() {
-  const CATEGORIES = [
-    {
-      title: "해외 마케팅",
-      image: "/images/ic_chart.png",
-    },
-    {
-      title: "퍼블리셔",
-      image: "/images/ic_image.png",
-    },
-    {
-      title: "캐드원(제도사)",
-      image: "/images/ic_box.png",
-    },
-    {
-      title: "해외 세일즈",
-      image: "/images/ic_star.png",
-    },
-    {
-      title: "해외 CS",
-      image: "/images/ic_phone.png",
-    },
-  ];
+type Props = { categories: Category[] };
 
-  const REPEATED = [...CATEGORIES, ...CATEGORIES, ...CATEGORIES];
+export default function CategoriesMarquee({ categories }: Props) {
+  const REPEATED = [...categories, ...categories, ...categories];
 
   const controls = useAnimation();
   const trackRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(CATEGORIES.length);
+  const [index, setIndex] = useState(categories.length);
   const jumpingRef = useRef(false);
 
   const getStep = () => {
@@ -65,7 +45,7 @@ export default function CategoriesMarquee() {
     controls
       .start({ x, transition: { duration: 0.7, ease: [0.4, 0.0, 0.2, 1] } })
       .then(() => {
-        const group = CATEGORIES.length;
+        const group = categories.length;
         if (index >= group * 2) {
           jumpingRef.current = true;
           setIndex((prev) => prev - group);

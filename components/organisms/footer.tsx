@@ -1,50 +1,15 @@
 import Link from "next/link";
 import { Logo, Icon } from "@/components/atoms";
+import type { ServiceCard } from "@/types/service";
+import type { ContactItem } from "@/types/contact";
 
-export default function Footer() {
-  const SERVICES = [
-    {
-      title: "해외 개발자 원격 채용",
-      image: "/images/ic_code.png",
-    },
-    {
-      title: "외국인 원격 채용 (비개발)",
-      image: "/images/ic_user.png",
-    },
-    {
-      title: "한국어 가능 외국인 채용",
-      image: "/images/ic_kor.png",
-    },
-    {
-      title: "해외 개발자 활용 서비스",
-      image: "/images/ic_gear.png",
-    },
-  ];
-
-  const CONTACT = [
-    {
-      title: "상호명",
-      value: "하이퍼하이어",
-      value2: "Hyperhire India Private Limited",
-    },
-    {
-      title: "대표 CEO",
-      value: "김주현",
-      value2: "Juhyun Kim",
-    },
-    {
-      title: "사업자등록번호 CIN",
-      value: "427-86-01187",
-      value2: "U74110DL2016PTC290812",
-    },
-    {
-      title: "주소 ADDRESS",
-      value: "서울특별시 강남대로 479, 지하 1층 238호",
-      value2:
-        "D-138, Street number 11, Jagjeet Nagar, North East Delhi, New Delhi, 110053 India",
-    },
-  ];
-
+export default function Footer({
+  services,
+  contact,
+}: {
+  services: ServiceCard[];
+  contact: ContactItem[];
+}) {
   return (
     <footer className="bg-[#FBFBFB] text-slate-900">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -61,7 +26,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col md:flex-row gap-4">
-            {SERVICES.map(({ title, image }, i) => (
+            {services.map(({ title, image }, i) => (
               <div
                 key={i}
                 className="w-[187px] h-[142px] rounded-2xl p-4 bg-white"
@@ -89,7 +54,7 @@ export default function Footer() {
 
         <div className="text-sm text-slate-600 mb-10">
           <div className="flex flex-col md:flex-row items-start justify-between gap-8">
-            {CONTACT.map(({ title, value, value2 }, i) => (
+            {contact.map(({ title, value, value2 }, i) => (
               <div key={i}>
                 <div className="mt-3 font-black text-xs">{title}</div>
                 <div className="mt-1 font-black text-[#5E626F] text-[13px]">
