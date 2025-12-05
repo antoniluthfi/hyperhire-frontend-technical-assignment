@@ -1,5 +1,5 @@
-import { HTMLAttributes } from "react";
-import { cn } from "@/lib/cn";
+import { HTMLAttributes } from 'react';
+import { cn } from '@/lib/cn';
 
 type DividerProps = HTMLAttributes<HTMLDivElement> & {
   widthClass?: string;
@@ -9,16 +9,11 @@ type DividerProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export default function Divider({
-  widthClass = "w-[129px]",
-  heightClass = "h-[1px]",
-  colorClass = "bg-white",
+  widthClass = 'w-[129px]',
+  heightClass = 'h-[1px]',
+  colorClass = 'bg-white',
   className,
   ...props
 }: DividerProps) {
-  return (
-    <div
-      {...props}
-      className={cn(widthClass, heightClass, colorClass, className)}
-    />
-  );
+  return <div {...props} className={cn(widthClass, heightClass, colorClass, className)} />;
 }

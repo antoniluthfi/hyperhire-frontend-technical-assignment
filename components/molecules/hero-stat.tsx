@@ -1,4 +1,4 @@
-import { Divider } from "@/components/atoms";
+import { Divider } from '@/components/atoms';
 
 type HeroStatProps = { title: string; description: string };
 

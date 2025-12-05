@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client";
+'use client';
 
-import type { Category } from "@/types/category";
-import { motion, useAnimation, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { JobCategoryCard } from "@/components/molecules";
+import type { Category } from '@/types/category';
+import { motion, useAnimation, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { JobCategoryCard } from '@/components/molecules';
 
 type Props = { categories: Category[] };
 
@@ -23,7 +23,7 @@ export default function CategoriesMarquee({ categories }: Props) {
     if (!track) return 0;
     const first = track.firstElementChild as HTMLElement | null;
     const style = getComputedStyle(track);
-    const gap = parseFloat(style.columnGap || style.gap || "0");
+    const gap = parseFloat(style.columnGap || style.gap || '0');
     const w = first ? first.getBoundingClientRect().width : 0;
     return w + gap;
   };
@@ -49,15 +49,13 @@ export default function CategoriesMarquee({ categories }: Props) {
       controls.set({ x });
       return;
     }
-    controls
-      .start({ x, transition: { duration: 0.7, ease: [0.4, 0.0, 0.2, 1] } })
-      .then(() => {
-        const group = categories.length;
-        if (index >= group * 2) {
-          jumpingRef.current = true;
-          setIndex((prev) => prev - group);
-        }
-      });
+    controls.start({ x, transition: { duration: 0.7, ease: [0.4, 0.0, 0.2, 1] } }).then(() => {
+      const group = categories.length;
+      if (index >= group * 2) {
+        jumpingRef.current = true;
+        setIndex((prev) => prev - group);
+      }
+    });
   }, [index, controls, prefersReducedMotion]);
 
   useEffect(() => {
@@ -67,8 +65,8 @@ export default function CategoriesMarquee({ categories }: Props) {
       const x = -Math.round(index * step);
       controls.set({ x });
     };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, [index, controls]);
 
   return (
@@ -76,14 +74,9 @@ export default function CategoriesMarquee({ categories }: Props) {
       className="hidden sm:block max-w-7xl mx-auto px-6 pb-14"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+      transition={{ duration: 0.5 }}>
       <div className="w-full overflow-hidden">
-        <motion.div
-          ref={trackRef}
-          className="inline-flex gap-3 flex-nowrap mx-auto"
-          animate={controls}
-        >
+        <motion.div ref={trackRef} className="inline-flex gap-3 flex-nowrap mx-auto" animate={controls}>
           {REPEATED.map(({ title, image }, i) => (
             <JobCategoryCard key={i} title={title} image={image} />
           ))}

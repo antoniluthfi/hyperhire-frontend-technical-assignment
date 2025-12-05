@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useWindowSize } from "@/hooks/use-window-size";
-import { motion } from "framer-motion";
-import { Avatar, Chip, Icon, Text } from "@/components/atoms";
-import { CandidateTagList } from "@/components/molecules";
-import type { Candidate } from "@/types/candidate";
+import { useState } from 'react';
+import { useWindowSize } from '@/hooks/use-window-size';
+import { motion } from 'framer-motion';
+import { Avatar, Chip, Icon, Text } from '@/components/atoms';
+import { CandidateTagList } from '@/components/molecules';
+import type { Candidate } from '@/types/candidate';
 
 type Props = { candidates: Candidate[] };
 
@@ -13,8 +13,7 @@ export default function CandidateCarousel({ candidates }: Props) {
   const { isMobile, isTablet } = useWindowSize();
 
   const [index, setIndex] = useState(0);
-  const prev = () =>
-    setIndex((i) => (i - 1 + candidates.length) % candidates.length);
+  const prev = () => setIndex((i) => (i - 1 + candidates.length) % candidates.length);
   const next = () => setIndex((i) => (i + 1) % candidates.length);
 
   return (
@@ -23,8 +22,7 @@ export default function CandidateCarousel({ candidates }: Props) {
         className="absolute -top-6 left-1/2 -translate-x-1/2 will-change-opacity"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+        transition={{ duration: 0.5 }}>
         <Chip iconSrc="/images/ic_dollar_circle.png" iconAlt="dollar">
           월 100만원
         </Chip>
@@ -36,15 +34,8 @@ export default function CandidateCarousel({ candidates }: Props) {
           aria-label="prev"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Icon
-            src="/images/ic_caret_left.png"
-            alt="prev"
-            width={28}
-            height={28}
-            priority
-          />
+          transition={{ duration: 0.5 }}>
+          <Icon src="/images/ic_caret_left.png" alt="prev" width={28} height={28} priority />
         </motion.button>
         <motion.button
           onClick={next}
@@ -52,15 +43,8 @@ export default function CandidateCarousel({ candidates }: Props) {
           aria-label="next"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Icon
-            src="/images/ic_caret_right.png"
-            alt="next"
-            width={28}
-            height={28}
-            priority
-          />
+          transition={{ duration: 0.5 }}>
+          <Icon src="/images/ic_caret_right.png" alt="next" width={28} height={28} priority />
         </motion.button>
         <div className="relative pointer-events-none">
           {[-1, 0, 1].map((offset) => {
@@ -68,16 +52,13 @@ export default function CandidateCarousel({ candidates }: Props) {
             const slide = candidates[i];
             const isCenter = offset === 0;
             const base = isCenter
-              ? "w-[234px] h-[311px] sm:w-[292px] sm:h-[408px] bg-white text-[#24252F] shadow-2xl"
-              : "w-[210px] h-[287px] sm:w-[260px] sm:h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]";
+              ? 'w-[234px] h-[311px] sm:w-[292px] sm:h-[408px] bg-white text-[#24252F] shadow-2xl'
+              : 'w-[210px] h-[287px] sm:w-[260px] sm:h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]';
             const sideGap = isMobile ? 50 : isTablet ? 80 : 100;
             const x = offset * sideGap;
 
             return (
-              <div
-                key={i}
-                className={`absolute left-1/2 -translate-x-1/2 ${isCenter ? "z-20" : "z-10"}`}
-              >
+              <div key={i} className={`absolute left-1/2 -translate-x-1/2 ${isCenter ? 'z-20' : 'z-10'}`}>
                 <motion.div
                   className={`rounded-xl will-change-transform ${base}`}
                   initial={{ opacity: 0 }}
@@ -88,44 +69,29 @@ export default function CandidateCarousel({ candidates }: Props) {
                     opacity: isCenter ? 1 : 0.95,
                   }}
                   transition={{
-                    type: "spring",
+                    type: 'spring',
                     stiffness: 300,
                     damping: 30,
                     opacity: { duration: 0.5 },
                   }}
-                  layout
-                >
+                  layout>
                   <div className="px-4 sm:px-8 py-8 flex flex-col items-center">
-                    <Avatar
-                      src={slide.avatar}
-                      alt="profile"
-                      size={isMobile ? 64 : isCenter ? 120 : 108}
-                    />
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5 }}
-                    >
+                    <Avatar src={slide.avatar} alt="profile" size={isMobile ? 64 : isCenter ? 120 : 108} />
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
                       <Text
-                        className={`mt-3 sm:mt-6 font-black ${isCenter ? "text-lg sm:text-2xl" : "text-sm sm:text-xl"}`}
-                      >
+                        className={`mt-3 sm:mt-6 font-black ${isCenter ? 'text-lg sm:text-2xl' : 'text-sm sm:text-xl'}`}>
                         {slide.name}
                       </Text>
                     </motion.div>
                     <Text
-                      className={`mt-1 sm:mt-2 text-[#4A77FF] ${isCenter ? "text-sm sm:text-base font-black" : "text-xs sm:text-sm"}`}
-                    >
+                      className={`mt-1 sm:mt-2 text-[#4A77FF] ${isCenter ? 'text-sm sm:text-base font-black' : 'text-xs sm:text-sm'}`}>
                       {slide.role} · {slide.exp}
                     </Text>
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5 }}
-                    >
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
                       <CandidateTagList
                         tags={slide.tags}
-                        size={isCenter ? "md" : "sm"}
-                        className={`mt-3 sm:mt-6 ${isCenter ? "" : "opacity-90"}`}
+                        size={isCenter ? 'md' : 'sm'}
+                        className={`mt-3 sm:mt-6 ${isCenter ? '' : 'opacity-90'}`}
                       />
                     </motion.div>
                   </div>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 type AvatarProps = {
   src: string;
@@ -9,14 +9,7 @@ type AvatarProps = {
 export default function Avatar({ src, alt, size = 120 }: AvatarProps) {
   return (
     <div className="rounded-full" style={{ width: size, height: size }}>
-      <Image
-        unoptimized
-        className="h-full w-full object-cover"
-        src={src}
-        alt={alt}
-        width={size}
-        height={size}
-      />
+      <Image unoptimized className="h-full w-full object-cover" src={src} alt={alt} width={size} height={size} />
     </div>
   );
 }

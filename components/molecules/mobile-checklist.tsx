@@ -1,5 +1,5 @@
-import { Text, Icon } from "@/components/atoms";
-import Link from "next/link";
+import { Text, Icon } from '@/components/atoms';
+import Link from 'next/link';
 
 type Props = {
   items?: string[];
@@ -9,10 +9,10 @@ type Props = {
 };
 
 export default function MobileChecklist({
-  items = ["한국어 능력", "업무 수행 능력", "검업 여부", "평판 조회"],
-  linkLabel = "개발자가 필요하신가요?",
-  linkHref = "#contact",
-  className = "",
+  items = ['한국어 능력', '업무 수행 능력', '검업 여부', '평판 조회'],
+  linkLabel = '개발자가 필요하신가요?',
+  linkHref = '#contact',
+  className = '',
 }: Props) {
   const list = items.slice(0, 4);
 
@@ -26,10 +26,7 @@ export default function MobileChecklist({
           </div>
         ))}
       </div>
-      <Link
-        href={linkHref}
-        className="mt-6 inline-block underline underline-offset-4 font-black text-[#FBFF23]"
-      >
+      <Link href={linkHref} className="mt-6 inline-block underline underline-offset-4 font-black text-[#FBFF23]">
         {linkLabel}
       </Link>
     </section>

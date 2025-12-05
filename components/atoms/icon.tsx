@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 type IconProps = {
   src: string;
@@ -9,14 +9,7 @@ type IconProps = {
   priority?: boolean;
 };
 
-export default function Icon({
-  src,
-  alt,
-  width,
-  height,
-  className,
-  priority,
-}: IconProps) {
+export default function Icon({ src, alt, width, height, className, priority }: IconProps) {
   return (
     <Image
       src={src}
@@ -25,7 +18,7 @@ export default function Icon({
       height={height}
       priority={priority}
       className={className}
-      aria-hidden={alt === "" ? true : undefined}
+      aria-hidden={alt === '' ? true : undefined}
     />
   );
 }
