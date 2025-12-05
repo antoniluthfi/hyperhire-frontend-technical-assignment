@@ -21,7 +21,9 @@ export default function Header() {
           해외 개발자 채용 서비스
         </a>
       </nav>
-      <Button variant="white">문의하기</Button>
+      <Button variant="white" className="hidden sm:block">
+        문의하기
+      </Button>
     </header>
   );
 }

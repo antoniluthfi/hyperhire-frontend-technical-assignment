@@ -25,16 +25,20 @@ export default function Footer({
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-4 md:flex md:flex-row">
             {services.map(({ title, image }, i) => (
               <div
                 key={i}
-                className="w-[187px] h-[142px] rounded-2xl p-4 bg-white"
+                className="w-full md:w-max rounded-xl p-4 bg-white flex flex-col items-start justify-between"
               >
-                <div className="w-10 h-10 rounded-lg bg-slate-100 mb-3">
-                  <Icon src={image} alt={title} width={40} height={40} />
+                <div>
+                  <div className="w-10 h-10 rounded-lg bg-slate-100 mb-3">
+                    <Icon src={image} alt={title} width={40} height={40} />
+                  </div>
+                  <div className="font-black text-sm text-slate-800">
+                    {title}
+                  </div>
                 </div>
-                <div className="font-black text-sm text-slate-800">{title}</div>
                 <Link
                   href="#"
                   className="text-[#5E626F] text-sm font-black mt-2 inline-flex items-center gap-1"
@@ -53,7 +57,7 @@ export default function Footer({
         </div>
 
         <div className="text-sm text-slate-600 mb-10">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-4 sm:gap-8">
             {contact.map(({ title, value, value2 }, i) => (
               <div key={i}>
                 <div className="mt-3 font-black text-xs">{title}</div>

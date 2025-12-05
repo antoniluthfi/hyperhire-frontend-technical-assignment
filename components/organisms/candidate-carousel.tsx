@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useWindowSize } from "@/hooks/use-window-size";
 import { motion } from "framer-motion";
 import { Avatar, Chip, Icon, Text } from "@/components/atoms";
 import { CandidateTagList } from "@/components/molecules";
@@ -9,6 +10,8 @@ import type { Candidate } from "@/types/candidate";
 type Props = { candidates: Candidate[] };
 
 export default function CandidateCarousel({ candidates }: Props) {
+  const { isMobile } = useWindowSize();
+
   const [index, setIndex] = useState(0);
   const prev = () =>
     setIndex((i) => (i - 1 + candidates.length) % candidates.length);
@@ -26,10 +29,10 @@ export default function CandidateCarousel({ candidates }: Props) {
           월 100만원
         </Chip>
       </motion.div>
-      <div className="relative mt-12 h-[520px]">
+      <div className="relative mt-12 h-[320px] sm:h-[520px]">
         <motion.button
           onClick={prev}
-          className="absolute -left-2 top-[40%] -translate-y-1/2"
+          className="absolute -left-2 top-1/2 sm:top-[40%] -translate-y-1/2"
           aria-label="prev"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -45,7 +48,7 @@ export default function CandidateCarousel({ candidates }: Props) {
         </motion.button>
         <motion.button
           onClick={next}
-          className="absolute -right-2 top-[40%] -translate-y-1/2"
+          className="absolute -right-2 top-1/2 sm:top-[40%] -translate-y-1/2"
           aria-label="next"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -65,9 +68,10 @@ export default function CandidateCarousel({ candidates }: Props) {
             const slide = candidates[i];
             const isCenter = offset === 0;
             const base = isCenter
-              ? "w-[292px] h-[408px] bg-white text-[#24252F] shadow-2xl"
-              : "w-[260px] h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]";
-            const x = offset * 120;
+              ? "w-[234px] h-[311px] sm:w-[292px] sm:h-[408px] bg-white text-[#24252F] shadow-2xl"
+              : "w-[210px] h-[287px] sm:w-[260px] sm:h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]";
+            const sideGap = isMobile ? 50 : 100;
+            const x = offset * sideGap;
 
             return (
               <div
@@ -75,11 +79,11 @@ export default function CandidateCarousel({ candidates }: Props) {
                 className={`absolute left-1/2 -translate-x-1/2 ${isCenter ? "z-20" : "z-10"}`}
               >
                 <motion.div
-                  className={`rounded-3xl will-change-transform ${base}`}
+                  className={`rounded-xl will-change-transform ${base}`}
                   initial={{ opacity: 0 }}
                   animate={{
                     x,
-                    y: isCenter ? 0 : 20.5,
+                    y: isCenter ? 0 : isMobile ? 10 : 16,
                     scale: isCenter ? 1 : 0.97,
                     opacity: isCenter ? 1 : 0.95,
                   }}
@@ -91,12 +95,11 @@ export default function CandidateCarousel({ candidates }: Props) {
                   }}
                   layout
                 >
-                  <div className="px-8 py-8 flex flex-col items-center">
+                  <div className="px-4 sm:px-8 py-8 flex flex-col items-center">
                     <Avatar
                       src={slide.avatar}
                       alt="profile"
-                      size={isCenter ? 120 : 108}
-                      ring={isCenter ? "light" : "white"}
+                      size={isMobile ? 64 : isCenter ? 120 : 108}
                     />
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -104,13 +107,13 @@ export default function CandidateCarousel({ candidates }: Props) {
                       transition={{ duration: 0.5 }}
                     >
                       <Text
-                        className={`mt-6 font-black ${isCenter ? "text-2xl" : "text-xl"}`}
+                        className={`mt-3 sm:mt-6 font-black ${isCenter ? "text-lg sm:text-2xl" : "text-sm sm:text-xl"}`}
                       >
                         {slide.name}
                       </Text>
                     </motion.div>
                     <Text
-                      className={`mt-2 text-[#4A77FF] ${isCenter ? "font-black" : "text-sm"}`}
+                      className={`mt-1 sm:mt-2 text-[#4A77FF] ${isCenter ? "text-sm sm:text-base font-black" : "text-xs sm:text-sm"}`}
                     >
                       {slide.role} · {slide.exp}
                     </Text>
@@ -122,7 +125,7 @@ export default function CandidateCarousel({ candidates }: Props) {
                       <CandidateTagList
                         tags={slide.tags}
                         size={isCenter ? "md" : "sm"}
-                        className={`mt-6 ${isCenter ? "" : "opacity-90"}`}
+                        className={`mt-3 sm:mt-6 ${isCenter ? "" : "opacity-90"}`}
                       />
                     </motion.div>
                   </div>
