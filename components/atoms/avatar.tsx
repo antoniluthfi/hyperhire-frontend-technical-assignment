@@ -8,10 +8,7 @@ type AvatarProps = {
 
 export default function Avatar({ src, alt, size = 120 }: AvatarProps) {
   return (
-    <div
-      className="rounded-full overflow-hidden"
-      style={{ width: size, height: size }}
-    >
+    <div className="rounded-full" style={{ width: size, height: size }}>
       <Image
         unoptimized
         className="h-full w-full object-cover"

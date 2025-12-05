@@ -16,7 +16,7 @@ export default function Hero() {
       </Text>
       <Link
         className="hidden sm:inline underline underline-offset-4 text-lg font-black"
-        href="#"
+        href="#contact"
       >
         개발자가 필요하신가요?
       </Link>

@@ -11,7 +11,7 @@ type Props = {
 export default function MobileChecklist({
   items = ["한국어 능력", "업무 수행 능력", "검업 여부", "평판 조회"],
   linkLabel = "개발자가 필요하신가요?",
-  linkHref = "#",
+  linkHref = "#contact",
   className = "",
 }: Props) {
   const list = items.slice(0, 4);
@@ -21,12 +21,7 @@ export default function MobileChecklist({
       <div className="grid grid-cols-[max-content_max-content] justify-items-start gap-x-3 gap-y-1">
         {list.map((label, i) => (
           <div key={i} className="inline-flex items-center gap-3 w-max">
-            <Icon
-              src="/images/ic_checkbox.png"
-              alt="checkbox"
-              width={20}
-              height={20}
-            />
+            <Icon src="/images/ic_checkbox.png" alt="" width={20} height={20} />
             <Text className="text-white">{label}</Text>
           </div>
         ))}

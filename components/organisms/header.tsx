@@ -13,12 +13,19 @@ export default function Header() {
           label="채용"
           title="채용"
           items={[
-            { label: "해외 개발자 원격 채용", href: "#" },
-            { label: "외국인 원격 채용 (비개발 직군)", href: "#" },
-            { label: "한국어 가능 외국인 채용", href: "#", separator: true },
+            { label: "해외 개발자 원격 채용", href: "#services" },
+            { label: "외국인 원격 채용 (비개발 직군)", href: "#services" },
+            {
+              label: "한국어 가능 외국인 채용",
+              href: "#services",
+              separator: true,
+            },
           ]}
         />
-        <Link className="opacity-90 hover:opacity-100 font-black" href="#">
+        <Link
+          className="opacity-90 hover:opacity-100 font-black"
+          href="#services"
+        >
           해외 개발자 채용 서비스
         </Link>
       </nav>
