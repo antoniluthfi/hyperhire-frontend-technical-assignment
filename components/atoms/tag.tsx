@@ -1,8 +1,5 @@
 import { HTMLAttributes } from "react";
-
-function cn(...classes: Array<string | false | null | undefined>) {
-  return classes.filter(Boolean).join(" ");
-}
+import { cn } from "@/lib/cn";
 
 type TagProps = HTMLAttributes<HTMLSpanElement> & {
   size?: "sm" | "md";
