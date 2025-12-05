@@ -25,6 +25,7 @@ export default function Icon({
       height={height}
       priority={priority}
       className={className}
+      aria-hidden={alt === "" ? true : undefined}
     />
   );
 }
