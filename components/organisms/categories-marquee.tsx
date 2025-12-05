@@ -2,7 +2,7 @@
 "use client";
 
 import type { Category } from "@/types/category";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { JobCategoryCard } from "@/components/molecules";
 
@@ -11,9 +11,11 @@ type Props = { categories: Category[] };
 export default function CategoriesMarquee({ categories }: Props) {
   const REPEATED = [...categories, ...categories, ...categories];
 
-  const controls = useAnimation();
-  const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(categories.length);
+
+  const controls = useAnimation();
+  const prefersReducedMotion = useReducedMotion();
+  const trackRef = useRef<HTMLDivElement>(null);
   const jumpingRef = useRef(false);
 
   const getStep = () => {
@@ -27,11 +29,12 @@ export default function CategoriesMarquee({ categories }: Props) {
   };
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const id = setInterval(() => {
       setIndex((prev) => prev + 1);
     }, 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
     const step = getStep();
@@ -40,6 +43,10 @@ export default function CategoriesMarquee({ categories }: Props) {
     if (jumpingRef.current) {
       controls.set({ x });
       jumpingRef.current = false;
+      return;
+    }
+    if (prefersReducedMotion) {
+      controls.set({ x });
       return;
     }
     controls
@@ -51,6 +58,17 @@ export default function CategoriesMarquee({ categories }: Props) {
           setIndex((prev) => prev - group);
         }
       });
+  }, [index, controls, prefersReducedMotion]);
+
+  useEffect(() => {
+    const onResize = () => {
+      const step = getStep();
+      if (!step) return;
+      const x = -Math.round(index * step);
+      controls.set({ x });
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, [index, controls]);
 
   return (
