@@ -26,7 +26,7 @@ export default function CandidateCarousel({ candidates }: Props) {
           월 100만원
         </Chip>
       </motion.div>
-      <div className="relative mt-8 h-[520px]">
+      <div className="relative mt-12 h-[520px]">
         <motion.button
           onClick={prev}
           className="absolute -left-2 top-[40%] -translate-y-1/2"
