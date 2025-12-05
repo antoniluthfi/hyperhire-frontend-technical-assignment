@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { useWindowSize } from "@/hooks/use-window-size";
 import { Icon } from "@/components/atoms";
 import Link from "next/link";
 
@@ -16,6 +20,8 @@ export default function Dropdown({
   align?: "left" | "center" | "right";
   showCaret?: boolean;
 }) {
+  const { isDesktop } = useWindowSize();
+  const [open, setOpen] = useState(false);
   const alignTrigger =
     align === "center"
       ? "before:left-1/2 before:-translate-x-1/2"
@@ -37,6 +43,12 @@ export default function Dropdown({
       <Link
         className="opacity-90 hover:opacity-100 inline-flex items-center gap-1 font-black"
         href="#"
+        onClick={(e) => {
+          if (!isDesktop) {
+            e.preventDefault();
+            setOpen((v) => !v);
+          }
+        }}
       >
         {label}
         {showCaret && (
@@ -49,7 +61,13 @@ export default function Dropdown({
         )}
       </Link>
       <div
-        className={`absolute ${alignMenu} top-full mt-3 w-80 rounded-lg overflow-hidden bg-white text-[#0F172A] shadow-xl ring-1 ring-black/10 transition-opacity transition-transform duration-200 ease-out opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto`}
+        className={`absolute ${alignMenu} top-full mt-3 z-50 w-80 rounded-lg overflow-hidden bg-white text-[#0F172A] shadow-xl ring-1 ring-black/10 transition-opacity transition-transform duration-200 ease-out ${
+          isDesktop
+            ? "opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+            : open
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 translate-y-2 pointer-events-none"
+        }`}
       >
         <div className="px-4 pt-4 pb-2 font-black text-[#0F172A]">
           {title ?? label}
@@ -59,6 +77,7 @@ export default function Dropdown({
             key={i}
             className={`block px-4 py-3 text-[#344054] hover:bg-slate-50 ${item.separator ? "border-t border-slate-100" : ""}`}
             href={item.href}
+            onClick={() => setOpen(false)}
           >
             {item.label}
           </Link>

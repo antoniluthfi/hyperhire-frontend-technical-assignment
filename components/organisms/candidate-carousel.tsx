@@ -10,7 +10,7 @@ import type { Candidate } from "@/types/candidate";
 type Props = { candidates: Candidate[] };
 
 export default function CandidateCarousel({ candidates }: Props) {
-  const { isMobile } = useWindowSize();
+  const { isMobile, isTablet } = useWindowSize();
 
   const [index, setIndex] = useState(0);
   const prev = () =>
@@ -70,7 +70,7 @@ export default function CandidateCarousel({ candidates }: Props) {
             const base = isCenter
               ? "w-[234px] h-[311px] sm:w-[292px] sm:h-[408px] bg-white text-[#24252F] shadow-2xl"
               : "w-[210px] h-[287px] sm:w-[260px] sm:h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]";
-            const sideGap = isMobile ? 50 : 100;
+            const sideGap = isMobile ? 50 : isTablet ? 80 : 100;
             const x = offset * sideGap;
 
             return (

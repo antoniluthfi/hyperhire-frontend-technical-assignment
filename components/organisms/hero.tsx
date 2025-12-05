@@ -20,7 +20,7 @@ export default function Hero() {
       >
         개발자가 필요하신가요?
       </Link>
-      <div className="mt-12 hidden sm:grid sm:grid-cols-3 gap-6 animate-fade-in-500 will-change-opacity">
+      <div className="mt-12 hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-500 will-change-opacity">
         <HeroStat
           title="평균 월 120만원"
           description="임금을 해당 국가를 기준으로 책정합니다."

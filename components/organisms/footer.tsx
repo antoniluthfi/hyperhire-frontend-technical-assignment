@@ -30,12 +30,12 @@ export default function Footer({
 
           <div
             id="services"
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4"
           >
             {services.map(({ title, image }, i) => (
               <div
                 key={i}
-                className="w-full rounded-xl p-4 bg-white flex flex-col items-start justify-between"
+                className="w-full rounded-xl p-4 sm:p-5 md:p-6 bg-white flex flex-col items-start justify-between"
               >
                 <div>
                   <div className="w-10 h-10 rounded-lg bg-slate-100 mb-3">
