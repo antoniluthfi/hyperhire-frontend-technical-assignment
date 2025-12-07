@@ -13,8 +13,8 @@ const config: Config = {
         foreground: 'var(--foreground)',
       },
       backgroundImage: {
-        'hero-mobile': 'url("/images/img_hero_mobile_bg.png")',
-        'hero-desktop': 'url("/images/img_hero_desktop_bg.png")',
+        'hero-mobile': 'url("/images/img_hero_mobile_bg.webp")',
+        'hero-desktop': 'url("/images/img_hero_desktop_bg.webp")',
       },
       keyframes: {
         fadeInUp: {

@@ -1,14 +1,11 @@
-import { headers } from 'next/headers';
+import { getSiteUrl } from '@/lib/site-url';
 import { HomeTemplate } from '@/components/templates';
 
 export default async function HomePage() {
-  const h = headers();
-  const host = h.get('host') || 'localhost:3000';
-  const proto = h.get('x-forwarded-proto') || 'http';
-  const baseUrl = `${proto}://${host}`;
+  const baseUrl = getSiteUrl();
 
   const get = (path: string) => {
-    return fetch(`${baseUrl}${path}`, { cache: 'no-store' }).then((r) => r.json());
+    return fetch(`${baseUrl}${path}`).then((r) => r.json());
   };
 
   const [candidates, categories, services, contact] = await Promise.all([
