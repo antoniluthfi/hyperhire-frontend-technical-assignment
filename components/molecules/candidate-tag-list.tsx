@@ -8,12 +8,12 @@ type CandidateTagListProps = {
 
 export default function CandidateTagList({ tags, size = 'md', className = '' }: CandidateTagListProps) {
   return (
-    <div className={`w-full flex flex-wrap justify-center gap-1 ${className}`}>
+    <ul className={`w-full flex flex-wrap justify-center gap-1 ${className}`}>
       {tags.map((t, i) => (
-        <Tag key={i} size={size}>
-          {t}
-        </Tag>
+        <li key={i}>
+          <Tag size={size}>{t}</Tag>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

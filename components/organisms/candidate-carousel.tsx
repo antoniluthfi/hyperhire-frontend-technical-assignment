@@ -17,7 +17,7 @@ export default function CandidateCarousel({ candidates }: Props) {
   const next = () => setIndex((i) => (i + 1) % candidates.length);
 
   return (
-    <section className="relative">
+    <section className="relative" aria-label="Candidates">
       <motion.div
         className="absolute -top-6 left-1/2 -translate-x-1/2 will-change-opacity"
         initial={{ opacity: 0 }}
@@ -46,7 +46,7 @@ export default function CandidateCarousel({ candidates }: Props) {
           transition={{ duration: 0.5 }}>
           <Icon src="/images/ic_caret_right.png" alt="next" width={28} height={28} priority />
         </motion.button>
-        <div className="relative pointer-events-none">
+        <div className="relative pointer-events-none" role="list">
           {[-1, 0, 1].map((offset) => {
             const i = (index + offset + candidates.length) % candidates.length;
             const slide = candidates[i];
@@ -58,7 +58,11 @@ export default function CandidateCarousel({ candidates }: Props) {
             const x = offset * sideGap;
 
             return (
-              <div key={i} className={`absolute left-1/2 -translate-x-1/2 ${isCenter ? 'z-20' : 'z-10'}`}>
+              <div
+                key={i}
+                role="listitem"
+                aria-hidden={!isCenter}
+                className={`absolute left-1/2 -translate-x-1/2 ${isCenter ? 'z-20' : 'z-10'}`}>
                 <motion.div
                   className={`rounded-xl will-change-transform ${base}`}
                   initial={{ opacity: 0 }}
@@ -76,7 +80,7 @@ export default function CandidateCarousel({ candidates }: Props) {
                   }}
                   layout>
                   <div className="px-4 sm:px-8 py-8 flex flex-col items-center">
-                    <Avatar src={slide.avatar} alt="profile" size={isMobile ? 64 : isCenter ? 120 : 108} />
+                    <Avatar src={slide.avatar} alt={slide.name} size={isMobile ? 64 : isCenter ? 120 : 108} />
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
                       <Text
                         className={`mt-3 sm:mt-6 font-black ${isCenter ? 'text-lg sm:text-2xl' : 'text-sm sm:text-xl'}`}>

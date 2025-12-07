@@ -72,6 +72,7 @@ export default function CategoriesMarquee({ categories }: Props) {
   return (
     <motion.section
       className="hidden sm:block max-w-7xl mx-auto px-6 pb-14"
+      aria-label="Job categories"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}>
