@@ -22,9 +22,7 @@ export default function Header() {
 
   return (
     <header className="max-w-7xl mx-auto px-6 pt-6 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <Logo variant="header" />
-      </div>
+      <Logo variant="header" />
       <nav className="hidden sm:flex items-center gap-8">
         <Dropdown
           label="채용"

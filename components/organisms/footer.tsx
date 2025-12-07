@@ -42,18 +42,16 @@ export default function Footer({ services, contact }: { services: ServiceCard[];
           </div>
         </div>
 
-        <div className="text-sm text-slate-600 mb-10">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-4 sm:gap-8">
-            {contact.map(({ title, value, value2 }, i) => (
-              <div key={i}>
-                <Heading as="h3" className="mt-3 text-xs">
-                  {title}
-                </Heading>
-                <Text className="mt-1 text-[#5E626F] text-[13px]">{value}</Text>
-                <Text className="mt-1 text-[#5E626F] text-[13px]">{value2}</Text>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-col md:flex-row items-start justify-between gap-4 sm:gap-8 mb-10">
+          {contact.map(({ title, value, value2 }, i) => (
+            <div key={i}>
+              <Heading as="h3" className="mt-3 text-xs">
+                {title}
+              </Heading>
+              <Text className="mt-1 text-[#5E626F] text-[13px]">{value}</Text>
+              <Text className="mt-1 text-[#5E626F] text-[13px]">{value2}</Text>
+            </div>
+          ))}
         </div>
 
         <Text className="mt-1 text-[#5E626F]">ⓒ 2023 Hyperhire</Text>
