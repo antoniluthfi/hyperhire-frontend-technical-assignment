@@ -46,7 +46,15 @@ export default function Dropdown({
           }
         }}>
         {label}
-        {showCaret && <Icon src="/images/ic_caret_down.png" alt="caret down" width={20} height={20} />}
+        {showCaret && (
+          <Icon
+            src="/images/ic_caret_down.png"
+            alt="caret down"
+            width={16}
+            height={16}
+            className={`transform transition-transform duration-200 ease-out group-hover:rotate-180 ${open ? 'rotate-180' : ''}`}
+          />
+        )}
       </button>
       <ul
         id="dropdown-menu"
