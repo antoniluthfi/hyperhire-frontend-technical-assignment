@@ -14,7 +14,7 @@ type HomeTemplateProps = {
 
 export default function HomeTemplate({ candidates, categories, services, contact }: HomeTemplateProps) {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-hero-mobile bg-cover bg-center md:bg-hero-desktop">
+    <div className="min-h-screen overflow-x-hidden bg-hero-mobile bg-cover bg-center md:bg-hero-desktop text-white">
       <Header />
       <main id="main-content" tabIndex={-1}>
         <div className="max-w-7xl mx-auto px-3 sm:px-6 pb-8 sm:pb-16 pt-5 sm:pt-10 grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
