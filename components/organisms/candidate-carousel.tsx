@@ -43,8 +43,8 @@ export default function CandidateCarousel({ candidates }: Props) {
             const slide = candidates[i];
             const isCenter = offset === 0;
             const base = isCenter
-              ? 'min-w-[234px] min-h-[311px] sm:min-w-[292px] sm:min-h-[408px] bg-white text-[#24252F] shadow-2xl'
-              : 'min-w-[210px] min-h-[287px] sm:min-w-[260px] sm:min-h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]';
+              ? 'w-[234px] min-h-[311px] sm:w-[292px] sm:min-h-[408px] bg-white text-[#24252F] shadow-2xl'
+              : 'w-[210px] min-h-[287px] sm:w-[260px] sm:min-h-[367px] bg-[#EDFCFF] backdrop-blur text-[#24252F]';
             const sideGap = isMobile ? 50 : isTablet ? 80 : 100;
             const x = offset * sideGap;
 
