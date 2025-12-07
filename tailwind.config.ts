@@ -12,6 +12,10 @@ const config: Config = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
+      backgroundImage: {
+        'hero-mobile': 'url("/images/img_hero_mobile_bg.png")',
+        'hero-desktop': 'url("/images/img_hero_desktop_bg.png")',
+      },
       keyframes: {
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(12px)' },

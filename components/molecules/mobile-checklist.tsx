@@ -10,7 +10,7 @@ export default function MobileChecklist({ className = '' }: Props) {
   const list = items.slice(0, 4);
 
   return (
-    <section className={`sm:hidden ${className}`} aria-label="Checklist">
+    <section className={`sm:hidden max-w-7xl mx-auto px-6 pb-14 ${className}`} aria-label="Checklist">
       <ul className="grid grid-cols-2 justify-items-start gap-x-3 gap-y-1">
         {list.map((label, i) => (
           <li key={i} className="flex items-start gap-3 w-full min-w-0">

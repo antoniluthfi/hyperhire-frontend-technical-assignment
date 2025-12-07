@@ -7,6 +7,7 @@ export function useInfiniteMarquee(categories: Category[]) {
   const prefersReducedMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  const [fading, setFading] = useState(false);
 
   const getStep = () => {
     const track = trackRef.current;
@@ -23,15 +24,16 @@ export function useInfiniteMarquee(categories: Category[]) {
     const id = setInterval(() => {
       const step = getStep();
       if (!step) return;
-      controls
-        .start({
-          x: -Math.round(step),
+      setFading(true);
+      setTimeout(() => {
+        controls.set({ x: Math.round(step) });
+        setIndex((prev) => (prev + 1) % categories.length);
+        controls.start({
+          x: 0,
           transition: { duration: 0.7, ease: [0.4, 0.0, 0.2, 1] },
-        })
-        .then(() => {
-          controls.set({ x: 0 });
-          setIndex((prev) => (prev + 1) % categories.length);
         });
+        setFading(false);
+      }, 200);
     }, 5000);
     return () => clearInterval(id);
   }, [prefersReducedMotion, controls, categories.length]);
@@ -51,5 +53,5 @@ export function useInfiniteMarquee(categories: Category[]) {
     return categories.map((_, i) => categories[(i + (index % g)) % g]);
   }, [categories, index]);
 
-  return { controls, trackRef, visible };
+  return { controls, trackRef, visible, fading };
 }
