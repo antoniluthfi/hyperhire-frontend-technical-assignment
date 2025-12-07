@@ -1,4 +1,4 @@
-import { Logo, Icon } from '@/components/atoms';
+import { Logo, Icon, Heading, Text } from '@/components/atoms';
 import type { ServiceCard } from '@/types/service';
 import type { ContactItem } from '@/types/contact';
 
@@ -9,14 +9,14 @@ export default function Footer({ services, contact }: { services: ServiceCard[];
         <div className="flex flex-col md:flex-row items-start justify-between gap-4 mb-10">
           <div id="contact" className="w-[274px]">
             <Logo variant="footer" />
-            <p className="mt-4 font-black text-sm">우리는 국가의 장벽을 넘어 최고의 인재를 매칭해드립니다.</p>
+            <Text className="mt-4 text-sm">우리는 국가의 장벽을 넘어 최고의 인재를 매칭해드립니다.</Text>
             <address className="mt-4 space-y-2 text-[#5E626F] text-[13px] not-italic">
-              <p className="font-black">
+              <Text className="font-black">
                 <a href="tel:01000000000">010-0000-0000</a>
-              </p>
-              <p className="font-black">
+              </Text>
+              <Text className="font-black">
                 <a href="mailto:aaaaaa@naver.com">aaaaaa@naver.com</a>
-              </p>
+              </Text>
             </address>
           </div>
 
@@ -29,12 +29,14 @@ export default function Footer({ services, contact }: { services: ServiceCard[];
                   <div className="w-10 h-10 rounded-lg bg-slate-100 mb-3">
                     <Icon src={image} alt={title} width={40} height={40} />
                   </div>
-                  <h3 className="font-black text-sm text-slate-800">{title}</h3>
+                  <Heading as="h3" className="text-sm text-slate-800">
+                    {title}
+                  </Heading>
                 </div>
-                <span className="text-[#5E626F] text-sm font-black mt-2 inline-flex items-center gap-1">
+                <Text as="span" className="text-[#5E626F] text-sm mt-2 inline-flex items-center gap-1">
                   바로가기
                   <Icon src="/images/ic_arrow_right_square.png" alt="" width={20} height={20} />
-                </span>
+                </Text>
               </div>
             ))}
           </div>
@@ -44,15 +46,17 @@ export default function Footer({ services, contact }: { services: ServiceCard[];
           <div className="flex flex-col md:flex-row items-start justify-between gap-4 sm:gap-8">
             {contact.map(({ title, value, value2 }, i) => (
               <div key={i}>
-                <h3 className="mt-3 font-black text-xs">{title}</h3>
-                <p className="mt-1 font-black text-[#5E626F] text-[13px]">{value}</p>
-                <p className="mt-1 font-black text-[#5E626F] text-[13px]">{value2}</p>
+                <Heading as="h3" className="mt-3 text-xs">
+                  {title}
+                </Heading>
+                <Text className="mt-1 text-[#5E626F] text-[13px]">{value}</Text>
+                <Text className="mt-1 text-[#5E626F] text-[13px]">{value2}</Text>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="mt-1 font-black text-[#5E626F]">ⓒ 2023 Hyperhire</p>
+        <Text className="mt-1 text-[#5E626F]">ⓒ 2023 Hyperhire</Text>
       </div>
     </footer>
   );
