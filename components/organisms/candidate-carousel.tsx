@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { motion } from 'framer-motion';
-import { Avatar, Chip, Icon, Text } from '@/components/atoms';
-import { CandidateTagList } from '@/components/molecules';
+import { Icon } from '@/components/atoms';
+import { CandidateCard } from '@/components/molecules';
 import type { Candidate } from '@/types/candidate';
 
 type Props = { candidates: Candidate[] };
@@ -18,15 +18,6 @@ export default function CandidateCarousel({ candidates }: Props) {
 
   return (
     <section className="relative" aria-label="Candidates">
-      <motion.div
-        className="absolute -top-6 left-1/2 -translate-x-1/2 will-change-opacity"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}>
-        <Chip iconSrc="/images/ic_dollar_circle.png" iconAlt="dollar">
-          월 100만원
-        </Chip>
-      </motion.div>
       <div className="relative mt-12 h-[320px] sm:h-[520px]">
         <motion.button
           onClick={prev}
@@ -64,7 +55,7 @@ export default function CandidateCarousel({ candidates }: Props) {
                 aria-hidden={!isCenter}
                 className={`absolute left-1/2 -translate-x-1/2 ${isCenter ? 'z-20' : 'z-10'}`}>
                 <motion.div
-                  className={`rounded-xl will-change-transform ${base}`}
+                  className={`relative rounded-xl will-change-transform ${base}`}
                   initial={{ opacity: 0 }}
                   animate={{
                     x,
@@ -79,26 +70,7 @@ export default function CandidateCarousel({ candidates }: Props) {
                     opacity: { duration: 0.5 },
                   }}
                   layout>
-                  <div className="px-4 sm:px-8 py-8 flex flex-col items-center">
-                    <Avatar src={slide.avatar} alt={slide.name} size={isMobile ? 64 : isCenter ? 120 : 108} />
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-                      <Text
-                        className={`mt-3 sm:mt-6 font-black ${isCenter ? 'text-lg sm:text-2xl' : 'text-sm sm:text-xl'}`}>
-                        {slide.name}
-                      </Text>
-                    </motion.div>
-                    <Text
-                      className={`mt-1 sm:mt-2 text-[#4A77FF] ${isCenter ? 'text-sm sm:text-base font-black' : 'text-xs sm:text-sm'}`}>
-                      {slide.role} · {slide.exp}
-                    </Text>
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-                      <CandidateTagList
-                        tags={slide.tags}
-                        size={isCenter ? 'md' : 'sm'}
-                        className={`mt-3 sm:mt-6 ${isCenter ? '' : 'opacity-90'}`}
-                      />
-                    </motion.div>
-                  </div>
+                  <CandidateCard candidate={slide} isCenter={isCenter} isMobile={isMobile} />
                 </motion.div>
               </div>
             );
