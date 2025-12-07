@@ -7,9 +7,10 @@ type IconProps = {
   height: number;
   className?: string;
   priority?: boolean;
+  sizes?: string;
 };
 
-export default function Icon({ src, alt, width, height, className, priority }: IconProps) {
+export default function Icon({ src, alt, width, height, className, priority, sizes }: IconProps) {
   return (
     <Image
       src={src}
@@ -17,6 +18,7 @@ export default function Icon({ src, alt, width, height, className, priority }: I
       width={width}
       height={height}
       priority={priority}
+      sizes={sizes ?? `${width}px`}
       className={className}
       aria-hidden={alt === '' ? true : undefined}
     />

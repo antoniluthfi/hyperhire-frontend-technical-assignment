@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { motion } from 'framer-motion';
 import { Icon } from '@/components/atoms';
@@ -13,8 +13,16 @@ export default function CandidateCarousel({ candidates }: Props) {
   const { isMobile, isTablet } = useWindowSize();
 
   const [index, setIndex] = useState(0);
+  const [animate, setAnimate] = useState(false);
+
   const prev = () => setIndex((i) => (i - 1 + candidates.length) % candidates.length);
   const next = () => setIndex((i) => (i + 1) % candidates.length);
+
+  useEffect(() => {
+    const idle = (cb: () => void) =>
+      'requestIdleCallback' in window ? window.requestIdleCallback(cb) : setTimeout(cb, 200);
+    idle(() => setAnimate(true));
+  }, []);
 
   return (
     <section className="relative" aria-label="Candidates">
@@ -26,7 +34,7 @@ export default function CandidateCarousel({ candidates }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}>
-          <Icon src="/images/ic_caret_left.png" alt="prev" width={28} height={28} priority />
+          <Icon src="/images/ic_caret_left.png" alt="prev" width={28} height={28} />
         </motion.button>
         <motion.button
           onClick={next}
@@ -35,7 +43,7 @@ export default function CandidateCarousel({ candidates }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}>
-          <Icon src="/images/ic_caret_right.png" alt="next" width={28} height={28} priority />
+          <Icon src="/images/ic_caret_right.png" alt="next" width={28} height={28} />
         </motion.button>
         <div className="relative pointer-events-none" role="list">
           {[-1, 0, 1].map((offset) => {
@@ -57,16 +65,20 @@ export default function CandidateCarousel({ candidates }: Props) {
                 <motion.div
                   className={`relative rounded-xl will-change-transform ${base}`}
                   initial={{ opacity: 0 }}
-                  animate={{
-                    x,
-                    y: isCenter ? 0 : isMobile ? 10 : 16,
-                    scale: isCenter ? 1 : 0.97,
-                    opacity: isCenter ? 1 : 0.95,
-                  }}
+                  animate={
+                    animate
+                      ? {
+                          x,
+                          y: isCenter ? 0 : isMobile ? 10 : 16,
+                          scale: isCenter ? 1 : 0.97,
+                          opacity: isCenter ? 1 : 0.95,
+                        }
+                      : undefined
+                  }
                   transition={{
                     type: 'spring',
-                    stiffness: 300,
-                    damping: 30,
+                    stiffness: 280,
+                    damping: 28,
                     opacity: { duration: 0.5 },
                   }}
                   layout>

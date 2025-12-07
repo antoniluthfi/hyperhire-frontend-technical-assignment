@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import headerLogo from '@/public/images/hyperhire_logo_header.png';
+import footerLogo from '@/public/images/hyperhire_logo_footer.png';
 
 type LogoProps = {
   variant?: 'header' | 'footer';
@@ -6,9 +8,20 @@ type LogoProps = {
 
 export default function Logo({ variant = 'header' }: LogoProps) {
   const isHeader = variant === 'header';
-  const src = isHeader ? '/images/hyperhire_logo_header.png' : '/images/hyperhire_logo_footer.png';
+  const src = isHeader ? headerLogo : footerLogo;
   const width = isHeader ? 114 : 187;
   const height = isHeader ? 21 : 34;
+  const sizes = isHeader ? '114px' : '187px';
 
-  return <Image src={src} alt="Hyperhire" width={width} height={height} priority={isHeader} />;
+  return (
+    <Image
+      src={src}
+      alt="Hyperhire"
+      width={width}
+      height={height}
+      priority={isHeader}
+      placeholder="blur"
+      sizes={sizes}
+    />
+  );
 }

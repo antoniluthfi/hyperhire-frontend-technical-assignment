@@ -1,13 +1,9 @@
-import { Header, Hero, Footer } from '@/components/organisms';
-import dynamic from 'next/dynamic';
+import { Header, Hero, Footer, CandidateCarousel, CategoriesMarquee } from '@/components/organisms';
 import { MobileChecklist } from '@/components/molecules';
 import type { Candidate } from '@/types/candidate';
 import type { Category } from '@/types/category';
 import type { ServiceCard } from '@/types/service';
 import type { ContactItem } from '@/types/contact';
-
-const CandidateCarousel = dynamic(() => import('@/components/organisms/candidate-carousel'), { ssr: false });
-const CategoriesMarquee = dynamic(() => import('@/components/organisms/categories-marquee'), { ssr: false });
 
 type HomeTemplateProps = {
   candidates: Candidate[];

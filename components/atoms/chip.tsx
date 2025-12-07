@@ -10,7 +10,7 @@ type ChipProps = {
 export default function Chip({ children, iconSrc, iconAlt = '', iconSize = 26 }: ChipProps) {
   return (
     <div className="inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-lg bg-[#E9F7EF] text-[#00C696] px-4 py-2 font-black text-lg relative after:content-[''] after:absolute after:left-[45%] after:-bottom-[8px] after:border-t-[10px] after:border-l-[8px] after:border-r-[8px] after:border-l-transparent after:border-r-transparent after:border-t-[#E9F7EF]">
-      {iconSrc && <Icon className="shrink-0" src={iconSrc} alt={iconAlt} width={iconSize} height={iconSize} priority />}
+      {iconSrc && <Icon className="shrink-0" src={iconSrc} alt={iconAlt} width={iconSize} height={iconSize} />}
       <span className="whitespace-nowrap">{children}</span>
     </div>
   );

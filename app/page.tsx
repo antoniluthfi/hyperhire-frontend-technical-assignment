@@ -1,6 +1,8 @@
 import { getSiteUrl } from '@/lib/site-url';
 import { HomeTemplate } from '@/components/templates';
 
+export const revalidate = 3600;
+
 export default async function HomePage() {
   const baseUrl = getSiteUrl();
 
